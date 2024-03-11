@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="content container">
+        <form action="/save" method="post" class="mb-3" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <label for="inputID" class="col-sm-2 col-form-label">ID:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="id" name="id" placeholder="Nhập mã">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputName" class="col-sm-2 col-form-label">Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputName" name="name" placeholder="Nhập tên môn">
+                </div>
+            </div>
+            <input type="file" name="img" accept="image/*">
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">Thêm</button>
+        </form>
+        <form action="/delete" method="post" class="mb-3" enctype="multipart/form-data">
+            <table class="table table-bordered text-center align-middle">
+                <caption style="caption-side: top;">Danh sách Môn</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Chọn</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    <% courses.forEach((item, id) => { %>
+                        <tr>
+                            <td><%= item.id %></td>
+                            <td><%= item.name %></td>
+                            <td> <img style="width: 100px;height: auto;" src="<%= item.img %>"/> </td>
+                            <!-- <td> <img style="width: 100px;height: auto;" src="/img/1.png"/> </td> -->
+                            <td><input type="checkbox" name="<%= item.id %>"></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-danger">Xóa</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS Bundle (Popper.js included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
